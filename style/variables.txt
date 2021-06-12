@@ -1,0 +1,6 @@
+@windowColor = #303030
+@barColor = #262626
+@textColor = #ababab
+@textDarkColor = #8f8f8f
+@greenColor = #73AD21
+@redColor = #AD2121
