@@ -14,3 +14,20 @@ class StyleNavigator:
 
 class PropertiesNavigator:
     pathOsuLoaderPropertiesJSON = "properties/properties.json"
+
+
+class Local:
+    class Path:
+        songsPath = "Songs/"
+        tempPath = "temp/"
+
+    class Song:
+        format = "osz"
+
+
+class Variables:
+    class Strings:
+        windowName = "osu!Loader 2.0"
+
+    class Integers:
+        pass
