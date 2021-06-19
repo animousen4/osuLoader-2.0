@@ -2,6 +2,7 @@ import os
 import zipfile
 
 import ResourceNavigator
+from back.osu.parser.OsuSongParser import OsuSongParser
 
 
 class SongShortInfo:
@@ -26,8 +27,12 @@ class SongFullInfo(SongShortInfo):
 
     def loadData(self, fileName):
         super(SongFullInfo, self).loadData(fileName)
+
         zipExtractor = zipfile.ZipFile(self.songPath)
         zipExtractor.extractall(ResourceNavigator.Local.Path.tempPath)
         zipExtractor.close()
-        #here
-        # self.songTempFilePath =
+
+        self.songTempFilePath = ResourceNavigator.Local.Path.tempPath + self.fileName
+
+        osuSongParser = OsuSongParser()
+
