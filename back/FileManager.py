@@ -1,33 +1,25 @@
 import os
 
 import ResourceNavigator
+from back.objects.song.Song import SongShortInfo
 
 
 class LoaderLevelManager:
-    levels = []
-
-    def __init__(self):
-        pass
+    songList = []
+    songFormat = ResourceNavigator.Local.Song.format
 
     def loadLoaderLevels(self):
         print("Loading saved maps...")
 
-        songList = []
-
         simpleFileList = os.listdir(ResourceNavigator.Local.Path.songsPath)
 
         for file in simpleFileList:
-            path =
-            size = os.path.getsize(ResourceNavigator.Local.Path.songsPath + file)
-
-            #songList.append()
-            print("     Map: {}".format(file))
-        print()
-        return fileList
-
-        pass
-
-    pass
+            if file.__contains__(".{}".format(self.songFormat)):
+                song = SongShortInfo()
+                song.loadData(file)
+                self.songList.append(song)
+                print("\tMap: {}".format(file))
+        return self.songList
 
 
 class OsuLevelManager:

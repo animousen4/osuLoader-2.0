@@ -16,6 +16,11 @@ class PropertiesNavigator:
     pathOsuLoaderPropertiesJSON = "properties/properties.json"
 
 
+
+class FontsNavigator:
+    fontExoRegular = "fonts/exo2/static/Exo2-Regular.ttf"
+    fontExoThin = "fonts/exo2/static/Exo2-Thin.ttf"
+    fontExoBold = "fonts/exo2/static/Exo2-Bold.ttf"
 class Local:
     class Path:
         songsPath = "Songs/"

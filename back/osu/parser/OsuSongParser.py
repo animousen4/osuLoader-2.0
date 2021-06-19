@@ -6,6 +6,7 @@ class OsuSongParser:
 
     def openSongFile(self, filePath):
         self.songFile = open(filePath).readlines()
+        block = Block(self.songFile)
 
     def getBlockLine(self, phrase):
         for num, line in enumerate(self.songFile, 0):
@@ -14,11 +15,23 @@ class OsuSongParser:
 
 
 class Block:
+    songFile = None
+
+    def __init__(self, sFile):
+        self.songFile = sFile
+
+
     class __Base:
+        variableList = {}
+
         blockLine = -1
         blockName = "blockName"
 
+        def ff(self):
+            pass
+
     class General(__Base):
+        audioFileName = "audioFileName"
         def __init__(self):
             self.blockName = "[General]"
 
