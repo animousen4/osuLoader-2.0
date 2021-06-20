@@ -13,6 +13,8 @@ class OsuLoaderWindow(QWidget):
         self.initUI()
 
     def initUI(self):
+        print("Init UI...")
+
         self.setWindowTitle(ResourceNavigator.Variables.Strings.windowName)
 
         self.initFonts()
@@ -35,6 +37,7 @@ class OsuLoaderWindow(QWidget):
         self.setStyleSheet(css)
 
     def initFonts(self):
+        print("Init fonts...")
         QtGui.QFontDatabase.addApplicationFont(ResourceNavigator.FontsNavigator.fontExoRegular)
         QtGui.QFontDatabase.addApplicationFont(ResourceNavigator.FontsNavigator.fontExoThin)
         QtGui.QFontDatabase.addApplicationFont(ResourceNavigator.FontsNavigator.fontExoBold)

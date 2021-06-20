@@ -11,7 +11,6 @@ class SongShortInfo:
     songPath = "songPath"
     songSize = -1
 
-
     def loadData(self, fName):
         self.fileName = fName
         self.songName = self.fileName.replace(".{}".format(ResourceNavigator.Local.Song.format), "")
@@ -24,7 +23,6 @@ class SongFullInfo(SongShortInfo):
     songMusicFilePath = "songMusicFilePath"
     songPicturePreviewPath = "songPicturePreviewPath"
 
-
     def loadData(self, fileName):
         super(SongFullInfo, self).loadData(fileName)
 
@@ -35,4 +33,3 @@ class SongFullInfo(SongShortInfo):
         self.songTempFilePath = ResourceNavigator.Local.Path.tempPath + self.fileName
 
         osuSongParser = OsuSongParser()
-
