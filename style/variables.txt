@@ -1,5 +1,6 @@
 @windowColor = #303030
 @barColor = #262626
+@browserColor = #1f1f1f
 @textColor = #ababab
 @textDarkColor = #8f8f8f
 @greenColor = #73AD21

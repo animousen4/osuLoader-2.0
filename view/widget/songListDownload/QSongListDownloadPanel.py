@@ -3,12 +3,12 @@ from PyQt5.QtWidgets import QFrame, QVBoxLayout
 from view.widget.songListDownload.microWidget.ImportDelAllButtonWidget import ImportDelAllButtonWidget
 
 
-class QSongListDownload(QFrame):
+class QSongListDownloadPanel(QFrame):
 
-    importDelButtons = None
+    importDelButtons = ImportDelAllButtonWidget
 
     def __init__(self):
-        super(QSongListDownload, self).__init__()
+        super(QSongListDownloadPanel, self).__init__()
 
         verticalLayout = QVBoxLayout()
 

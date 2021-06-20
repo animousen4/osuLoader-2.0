@@ -14,3 +14,11 @@ QPushButton{
   border: 2px solid @textDarkColor;
   background: transparent;
 }
+
+ImportAllButton{
+  border: 2px solid @greenColor;
+}
+
+DeleteAllButton{
+  border: 2px solid @redColor;
+}

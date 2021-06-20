@@ -16,7 +16,7 @@ class QBrowserWidget(QWebEngineView):
 
     def setupBrowser(self):
         self.settings().setAttribute(QWebEngineSettings.ShowScrollBars, False)
-        self.page().setBackgroundColor(QColor("#303030"))
+        self.page().setBackgroundColor(QColor("#1f1f1f"))
 
     def onStart(self):
         self.loadBeatMapPage()
