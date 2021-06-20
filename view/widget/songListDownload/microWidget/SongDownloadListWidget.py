@@ -24,6 +24,8 @@ class MapWidget(QFrame):
 
         self.mapSizeLabel = MapSizeLabel()
 
+        #here
+
 
 
 
