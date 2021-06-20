@@ -8,9 +8,10 @@ from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 
 class OsuLoaderWindow(QWidget):
+    osuLoaderWindowLayout = OsuLoaderWindowLayout
+
     def __init__(self):
         super(OsuLoaderWindow, self).__init__()
-        self.initBack()
         self.initUI()
 
     def initUI(self):
@@ -22,7 +23,9 @@ class OsuLoaderWindow(QWidget):
 
         self.initStyles()
 
-        self.setLayout(OsuLoaderWindowLayout())
+        self.osuLoaderWindowLayout = OsuLoaderWindowLayout()
+
+        self.setLayout(self.osuLoaderWindowLayout)
 
         self.setFixedSize(1280, 720)
 
@@ -31,9 +34,6 @@ class OsuLoaderWindow(QWidget):
         fileManager.loadLoaderLevels()
 
         self.show()
-
-    def initBack(self):
-        pass
 
     def initStyles(self):
         print("Init styles...")

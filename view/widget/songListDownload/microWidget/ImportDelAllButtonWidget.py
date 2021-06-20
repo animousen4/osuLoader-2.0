@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QHBoxLayout
 
-from view.element.button.ImportDelAllButton import ImportAllButton, DeleteAllButton
+from view.element.button.types.ImportDelAllButton import ImportAllButton, DeleteAllButton
 
 
 class ImportDelAllButtonWidget(QFrame):

@@ -41,5 +41,7 @@ class Variables:
         buttonImportAllText = "Import all"
         buttonDeleteAllText = "Delete all"
 
+        labelDownloads = "Downloads"
+
     class Integers:
         pass

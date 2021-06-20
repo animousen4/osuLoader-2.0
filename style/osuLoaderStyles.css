@@ -5,6 +5,10 @@ QFrame{
 QWidget{
   background-color: @windowColor;
 }
+QLabel{
+  background-color: @windowColor;
+  color: @textColor;
+}
 
 QPushButton{
   font: 14pt 'Exo 2 Bold';
@@ -21,4 +25,12 @@ ImportAllButton{
 
 DeleteAllButton{
   border: 2px solid @redColor;
+}
+
+LargeLabel{
+  font: 14pt 'Exo 2 Bold';
+}
+
+SmallLabel{
+  font: 10pt 'Exo 2 Bold';
 }

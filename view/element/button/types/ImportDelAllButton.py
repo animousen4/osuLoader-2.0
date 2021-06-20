@@ -1,7 +1,5 @@
-from PyQt5.QtWidgets import QPushButton
-
 import ResourceNavigator
-from view.element.button.types.ButtonTypes import MediumButton
+from view.element.button.ButtonTypes import MediumButton
 
 
 class ImportDelAllButton(MediumButton):

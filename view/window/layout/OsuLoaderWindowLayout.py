@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QProgressBar
+from PyQt5.QtWidgets import QHBoxLayout
 
-from view.element.button.YesNoButton import YesButton
 from view.widget.browser.QBrowserWidget import QBrowserWidget
 from view.widget.songListDownload.QSongListDownloadPanel import QSongListDownloadPanel
 
