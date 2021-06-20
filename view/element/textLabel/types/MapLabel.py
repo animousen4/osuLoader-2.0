@@ -24,4 +24,4 @@ class MapSizeLabel(MapLabel):
         self.percent = round(curS / dowS * 100, 1)
         self.currentSize = curS
         self.downloadSize = dowS
-        self.setText("{}/{} MB".format(curS, dowS))
+        self.setText("{}/{} MB".format(curS/1000000, dowS/1000000))

@@ -1,10 +1,15 @@
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout
 
 from back.objects.song.Song import SongShortInfo
+from view.element.textLabel.types.MapLabel import MapSizeLabel, MapNameLabel
 
 
 class MapWidget(QFrame):
     song = SongShortInfo
+
+    mapNameLabel = MapNameLabel
+
+    mapSizeLabel = MapSizeLabel
 
     def __init__(self, s=SongShortInfo):
         super(MapWidget, self).__init__()
@@ -14,6 +19,12 @@ class MapWidget(QFrame):
 
     def initWidget(self):
         horizontalLayout = QHBoxLayout()
+
+        self.mapNameLabel = MapNameLabel()
+
+        self.mapSizeLabel = MapSizeLabel()
+
+
 
 
 
