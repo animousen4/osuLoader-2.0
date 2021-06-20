@@ -1,60 +1,16 @@
-
-QOsuContent{
-  background-color: @windowColor;
-  color: @textColor;
-}
-
-QOsuBrowser{
-  color: @textColor;
+QFrame{
   background-color: @windowColor;
 }
-abstractActionIconButton{
-  border: none;
-  background: transparent;
+
+QWidget{
+  background-color: @windowColor;
 }
-abstractMiddleButton{
+
+QPushButton{
   font: 14pt 'Exo 2 Bold';
   color: @textColor;
+  background-color: transparent;
   border-radius: 8;
   border: 2px solid @textDarkColor;
   background: transparent;
 }
-importAllMapsButton{
-  border: 2px solid @greenColor;
-}
-deleteAllMapsButton{
-  border: 2px solid @redColor;
-}
-QScrollArea{
-  background: transparent;
-  border: none;
-}
-abstractTextLabel{
-  color: @textColor;
-  font: 10pt 'Exo 2 Bold';
-}
-OsuFileWidget{
-  color: @textColor;
-}
-osuNotificatons{
-  font: 12pt 'Exo 2 Bold';
-}
-
-osuBar {
-  background-color: @barColor;
-  color: @textColor;
-}
-
-downloadLabelTitle{
-  font: 16pt 'Exo 2';
-}
-DownloadBar{
-  border: 2px solid grey;
-  border-radius: 5px;
-  background: @windowColor;
-  text-align: center;
-                    }
-DownloadBar::chunk {
-  background-color: #b8b8b8;
-  width: 1px;
-              }

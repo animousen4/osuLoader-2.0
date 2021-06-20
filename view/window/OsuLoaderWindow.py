@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QWidget
 import ResourceNavigator
 from back.FileManager import LoaderLevelManager
 from back.css.style import cssLoader
+from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 
 class OsuLoaderWindow(QWidget):
@@ -20,6 +21,10 @@ class OsuLoaderWindow(QWidget):
         self.initFonts()
 
         self.initStyles()
+
+        self.setLayout(OsuLoaderWindowLayout())
+
+        self.setFixedSize(1280, 720)
 
         fileManager = LoaderLevelManager()
 

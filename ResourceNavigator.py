@@ -16,12 +16,16 @@ class PropertiesNavigator:
     pathOsuLoaderPropertiesJSON = "properties/properties.json"
 
 
-
 class FontsNavigator:
     fontExoRegular = "fonts/exo2/static/Exo2-Regular.ttf"
     fontExoThin = "fonts/exo2/static/Exo2-Thin.ttf"
     fontExoBold = "fonts/exo2/static/Exo2-Bold.ttf"
+
+
 class Local:
+    class Url:
+        beatMapUrl = "https://osu.ppy.sh/beatmapsets"
+
     class Path:
         songsPath = "Songs/"
         tempPath = "temp/"
@@ -33,6 +37,9 @@ class Local:
 class Variables:
     class Strings:
         windowName = "osu!Loader 2.0"
+
+        buttonImportAllText = "Import all"
+        buttonDeleteAllText = "Delete all"
 
     class Integers:
         pass
