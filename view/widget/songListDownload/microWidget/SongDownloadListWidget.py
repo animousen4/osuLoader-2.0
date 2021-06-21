@@ -1,8 +1,52 @@
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget
 
 from back.objects.song.Song import SongShortInfo
-from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFIle, ActionButtonCancelDownload
+from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFIle, \
+    ActionButtonCancelDownload
+from view.element.progressBar.ProgressBarTypes import DownloadProgressBar
 from view.element.textLabel.types.MapLabel import MapSizeLabel, MapNameLabel
+
+
+class CommonSongDataWidget(QFrame):
+    song = SongShortInfo
+
+    mapNameLabel = MapNameLabel
+
+    mapSizeLabel = MapSizeLabel
+
+    mapDownloadBar = DownloadProgressBar
+
+    def __init__(self):
+        super(CommonSongDataWidget, self).__init__()
+
+        self.initWidget()
+
+    def initWidget(self):
+        horizontalLayout = QHBoxLayout()
+
+        horizontalLayoutWidget = QWidget()
+
+        verticalLayout = QVBoxLayout()
+
+        self.mapNameLabel = MapNameLabel()
+
+        self.mapSizeLabel = MapSizeLabel()
+
+        self.mapDownloadBar = DownloadProgressBar()
+
+        horizontalLayout.addWidget(self.mapNameLabel)
+        horizontalLayout.addWidget(self.mapSizeLabel)
+
+        horizontalLayoutWidget.setLayout(horizontalLayout)
+
+        verticalLayout.addWidget(horizontalLayoutWidget)
+        verticalLayout.addWidget(self.mapDownloadBar)
+
+        self.setLayout(verticalLayout)
+
+    def setSongData(self, songInfo=SongShortInfo):
+        self.song = songInfo
+
 
 class ActionButtonPanelWidget(QFrame):
     hWidgetLayout = QHBoxLayout
@@ -22,24 +66,22 @@ class ActionButtonPanelWidget(QFrame):
 
     def initWidget(self):
         self.hWidgetLayout = QHBoxLayout()
-        #...
+        # ...
         self.setLayout(self.hWidgetLayout)
 
     def setStatusDownloading(self):
         self.hWidgetLayout.addWidget(self.actionButtonCancelDownload)
-
 
     def setStatusDownloadFinished(self):
         self.hWidgetLayout.removeWidget(self.actionButtonCancelDownload)
         self.hWidgetLayout.addWidget(self.actionButtonImport)
         self.hWidgetLayout.addWidget(self.actionButtonDeleteFile)
 
+
 class MapWidget(QFrame):
-    song = SongShortInfo
+    mapActionButtons = ActionButtonPanelWidget
 
-    mapNameLabel = MapNameLabel
-
-    mapSizeLabel = MapSizeLabel
+    commonSongData = CommonSongDataWidget
 
     def __init__(self):
         super(MapWidget, self).__init__()
@@ -49,13 +91,15 @@ class MapWidget(QFrame):
     def initWidget(self):
         horizontalLayout = QHBoxLayout()
 
-        self.mapNameLabel = MapNameLabel()
+        self.mapActionButtons = ActionButtonPanelWidget()
 
-        self.mapSizeLabel = MapSizeLabel()
+        self.commonSongData = CommonSongDataWidget()
 
-        #here
-    def fillDataMapWidget(self, songInfo=SongShortInfo):
-        self.song = songInfo
+        horizontalLayout.addWidget(self.commonSongData)
+        horizontalLayout.addWidget(self.mapActionButtons)
+
+        self.setLayout(horizontalLayout)
+        # here
 
 
 class MapListWidget(QVBoxLayout):

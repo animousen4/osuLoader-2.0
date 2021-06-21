@@ -19,6 +19,17 @@ QPushButton{
   background: transparent;
 }
 
+DownloadProgressBar{
+  border: 2px solid grey;
+  border-radius: 5px;
+  background: @windowColor;
+  text-align: center;
+}
+
+DownloadProgressBar::chunk{
+  background-color: #b8b8b8;
+  width: 1px;
+}
 ImportAllButton{
   border: 2px solid @greenColor;
 }
