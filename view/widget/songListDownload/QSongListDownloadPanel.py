@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QFrame, QVBoxLayout
 
 from view.element.textLabel.types.DownloadsLabel import DownloadsLabel
-from view.widget.songListDownload.microWidget.DonwloadsLabelWidget import DownloadsLabelWidget
+from view.widget.songListDownload.microWidget.DownloadsLabelWidget import DownloadsLabelWidget
 from view.widget.songListDownload.microWidget.ImportDelAllButtonWidget import ImportDelAllButtonWidget
 
 
