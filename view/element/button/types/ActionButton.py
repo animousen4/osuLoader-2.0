@@ -9,9 +9,9 @@ class ActionButton(IconButton):
         super(ActionButton, self).__init__()
 
 
-class ActionButtonDeleteFIle(ActionButton):
+class ActionButtonDeleteFile(ActionButton):
     def __init__(self):
-        super(ActionButtonDeleteFIle, self).__init__()
+        super(ActionButtonDeleteFile, self).__init__()
         self.setIcon(QIcon(ResourceNavigator.MaterialNavigator.icoDeleteFile))
 
 

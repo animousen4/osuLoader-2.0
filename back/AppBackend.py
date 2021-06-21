@@ -20,5 +20,7 @@ class AppBackend:
     def addDownloaderSongToView(self, song=SongShortInfo):
         mapWidget = MapWidget()
         mapWidget.commonSongData.setSongData(song)
+        mapWidget.mapActionButtons.setStatusDownloadFinished()
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
+
 

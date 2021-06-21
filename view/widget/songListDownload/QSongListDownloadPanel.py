@@ -3,10 +3,13 @@ from PyQt5.QtWidgets import QFrame, QVBoxLayout
 from view.element.textLabel.types.DownloadsLabel import DownloadsLabel
 from view.widget.songListDownload.microWidget.DownloadsLabelWidget import DownloadsLabelWidget
 from view.widget.songListDownload.microWidget.ImportDelAllButtonWidget import ImportDelAllButtonWidget
-from view.widget.songListDownload.microWidget.SongDownloadListWidget import SongDownloadListWidget
+from view.widget.songListDownload.microWidget.SongDownloadListWidget import SongDownloadListWidget, \
+    ActionButtonPanelWidget
 
 
 class QSongListDownloadPanel(QFrame):
+
+    importDelButtons = ActionButtonPanelWidget
 
     songDownloadList = SongDownloadListWidget
 
@@ -15,7 +18,7 @@ class QSongListDownloadPanel(QFrame):
 
         verticalLayout = QVBoxLayout()
 
-        self.importDelButtons = ImportDelAllButtonWidget()
+        self.importDelButtons = ActionButtonPanelWidget()
 
         self.songDownloadList = SongDownloadListWidget()
 

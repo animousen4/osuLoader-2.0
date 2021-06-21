@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget
 
 from back.objects.song.Song import SongShortInfo
-from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFIle, \
+from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFile, \
     ActionButtonCancelDownload
 from view.element.progressBar.ProgressBarTypes import DownloadProgressBar
 from view.element.textLabel.types.MapLabel import MapSizeLabel, MapNameLabel
@@ -23,10 +23,14 @@ class CommonSongDataWidget(QFrame):
 
     def initWidget(self):
         verticalLayoutNS = QVBoxLayout()
+        verticalLayoutNS.setContentsMargins(0, 0, 0, 0)
+        verticalLayoutNS.setSpacing(0)
 
         verticalLayoutNSWidget = QWidget()
 
         verticalLayout = QVBoxLayout()
+        verticalLayout.setContentsMargins(0, 0, 0, 0)
+        verticalLayout.setSpacing(0)
 
         self.mapNameLabel = MapNameLabel()
 
@@ -54,14 +58,14 @@ class CommonSongDataWidget(QFrame):
 class ActionButtonPanelWidget(QFrame):
     hWidgetLayout = QHBoxLayout
 
-    actionButtonDeleteFile = ActionButtonDeleteFIle
+    actionButtonDeleteFile = ActionButtonDeleteFile
     actionButtonImport = ActionButtonImport
     actionButtonCancelDownload = ActionButtonCancelDownload
 
     def __init__(self):
         super(ActionButtonPanelWidget, self).__init__()
 
-        self.actionButtonDeleteFile = ActionButtonDeleteFIle()
+        self.actionButtonDeleteFile = ActionButtonDeleteFile()
         self.actionButtonImport = ActionButtonImport()
         self.actionButtonCancelDownload = ActionButtonCancelDownload()
 
@@ -69,6 +73,8 @@ class ActionButtonPanelWidget(QFrame):
 
     def initWidget(self):
         self.hWidgetLayout = QHBoxLayout()
+        self.hWidgetLayout.setContentsMargins(0, 0, 0, 0)
+        #self.hWidgetLayout.setSpacing(0)
         # ...
         self.setLayout(self.hWidgetLayout)
 
@@ -93,6 +99,7 @@ class MapWidget(QFrame):
 
     def initWidget(self):
         horizontalLayout = QHBoxLayout()
+        horizontalLayout.setSpacing(0)
 
         self.mapActionButtons = ActionButtonPanelWidget()
 
@@ -108,6 +115,7 @@ class MapWidget(QFrame):
 class MapListWidget(QVBoxLayout):
     def __init__(self):
         super(MapListWidget, self).__init__()
+        self.setSpacing(0)
 
     def addSong(self, mapWidget=MapWidget):
         self.addWidget(mapWidget)

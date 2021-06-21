@@ -3,7 +3,7 @@ class MaterialNavigator:
     icoLogo = "material/ico/logo.png"
 
     icoCancelDownload = "material/ico/cancelDownloadWhite.png"
-    icoImportFile = "material/ico/importWhiteV4.png.png"
+    icoImportFile = "material/ico/importWhiteV4.png"
     icoDeleteFile = "material/ico/deleteWhite.png"
 
 
