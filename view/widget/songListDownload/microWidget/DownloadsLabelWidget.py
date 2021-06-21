@@ -5,6 +5,7 @@ from view.element.textLabel.types.DownloadsLabel import DownloadsLabel
 
 
 class DownloadsLabelWidget(QFrame):
+
     def __init__(self):
         super(DownloadsLabelWidget, self).__init__()
 

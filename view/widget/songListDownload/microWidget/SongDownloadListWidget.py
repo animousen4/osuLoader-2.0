@@ -22,30 +22,33 @@ class CommonSongDataWidget(QFrame):
         self.initWidget()
 
     def initWidget(self):
-        horizontalLayout = QHBoxLayout()
+        verticalLayoutNS = QVBoxLayout()
 
-        horizontalLayoutWidget = QWidget()
+        verticalLayoutNSWidget = QWidget()
 
         verticalLayout = QVBoxLayout()
 
         self.mapNameLabel = MapNameLabel()
 
-        self.mapSizeLabel = MapSizeLabel()
-
         self.mapDownloadBar = DownloadProgressBar()
 
-        horizontalLayout.addWidget(self.mapNameLabel)
-        horizontalLayout.addWidget(self.mapSizeLabel)
+        self.mapSizeLabel = MapSizeLabel(self.mapDownloadBar)
 
-        horizontalLayoutWidget.setLayout(horizontalLayout)
+        verticalLayoutNS.addWidget(self.mapNameLabel)
+        verticalLayoutNS.addWidget(self.mapSizeLabel)
 
-        verticalLayout.addWidget(horizontalLayoutWidget)
+        verticalLayoutNSWidget.setLayout(verticalLayoutNS)
+
+        verticalLayout.addWidget(verticalLayoutNSWidget)
         verticalLayout.addWidget(self.mapDownloadBar)
 
         self.setLayout(verticalLayout)
 
     def setSongData(self, songInfo=SongShortInfo):
         self.song = songInfo
+        self.mapNameLabel.setName(self.song.songName)
+        if self.song.songStatus == self.song.SongStatus.downloadFinished:
+            self.mapSizeLabel.updateSize(self.song.songSize, self.song.songSize)
 
 
 class ActionButtonPanelWidget(QFrame):
@@ -106,13 +109,13 @@ class MapListWidget(QVBoxLayout):
     def __init__(self):
         super(MapListWidget, self).__init__()
 
-    def addSong(self, mapWidget):
+    def addSong(self, mapWidget=MapWidget):
         self.addWidget(mapWidget)
         pass
 
 
 class SongDownloadListWidget(QFrame):
-    mapList = QVBoxLayout
+    mapList = MapListWidget
 
     def __init__(self):
         super(SongDownloadListWidget, self).__init__()
@@ -120,3 +123,5 @@ class SongDownloadListWidget(QFrame):
         self.mapList = MapListWidget()
 
         self.setLayout(self.mapList)
+
+        #!!!! importDelButtons = ImportDelAllButtonWidget

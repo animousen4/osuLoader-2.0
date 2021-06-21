@@ -6,6 +6,10 @@ from back.osu.parser.OsuSongParser import OsuSongParser
 
 
 class SongShortInfo:
+    class SongStatus:
+        downloadFinished = 0
+        downloading = 1
+    songStatus = SongStatus.downloadFinished
     fileName = "fileName"
     songName = "songName"
     songPath = "songPath"
