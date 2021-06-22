@@ -19,10 +19,8 @@ class QBrowserWidget(QWebEngineView):
         self.page().setBackgroundColor(QColor("#1f1f1f"))
 
     def onStart(self):
-        self.loadBeatMapPage()
-
-    def loadBeatMapPage(self):
-        self.load(QUrl(ResourceNavigator.Local.Url.beatMapUrl))
+        pass
+        #self.loadBeatMapPage()
 
     def goBack(self):
         self.back()

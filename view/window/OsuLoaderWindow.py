@@ -2,14 +2,14 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QWidget
 
 import ResourceNavigator
-from back.AppBackend import AppBackend
+from back.AppBackend import AppBackendInit
 from back.css.style import cssLoader
 from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 
 class OsuLoaderWindow(QWidget):
     osuLoaderWindowLayout = OsuLoaderWindowLayout
-    appBackend = AppBackend
+    appBackend = AppBackendInit
 
     def __init__(self):
         super(OsuLoaderWindow, self).__init__()
@@ -32,7 +32,7 @@ class OsuLoaderWindow(QWidget):
 
         self.show()
 
-        self.appBackend = AppBackend(self.osuLoaderWindowLayout)
+        self.appBackend = AppBackendInit(self.osuLoaderWindowLayout)
 
 
     def initStyles(self):

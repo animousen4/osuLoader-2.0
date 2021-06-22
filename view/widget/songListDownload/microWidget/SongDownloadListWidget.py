@@ -1,3 +1,4 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget
 
 from back.objects.song.Song import SongShortInfo
@@ -19,12 +20,14 @@ class CommonSongDataWidget(QFrame):
     def __init__(self):
         super(CommonSongDataWidget, self).__init__()
 
+        self.setContentsMargins(0,0,0,0)
         self.initWidget()
 
     def initWidget(self):
         verticalLayoutNS = QVBoxLayout()
         verticalLayoutNS.setContentsMargins(0, 0, 0, 0)
         verticalLayoutNS.setSpacing(0)
+        verticalLayoutNS.setAlignment(Qt.AlignVCenter)
 
         verticalLayoutNSWidget = QWidget()
 
@@ -73,8 +76,9 @@ class ActionButtonPanelWidget(QFrame):
 
     def initWidget(self):
         self.hWidgetLayout = QHBoxLayout()
+        self.hWidgetLayout.setAlignment(Qt.AlignRight)
         self.hWidgetLayout.setContentsMargins(0, 0, 0, 0)
-        #self.hWidgetLayout.setSpacing(0)
+        self.hWidgetLayout.setSpacing(5)
         # ...
         self.setLayout(self.hWidgetLayout)
 
@@ -99,7 +103,8 @@ class MapWidget(QFrame):
 
     def initWidget(self):
         horizontalLayout = QHBoxLayout()
-        horizontalLayout.setSpacing(0)
+        horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        horizontalLayout.setSpacing(20)
 
         self.mapActionButtons = ActionButtonPanelWidget()
 
@@ -115,7 +120,9 @@ class MapWidget(QFrame):
 class MapListWidget(QVBoxLayout):
     def __init__(self):
         super(MapListWidget, self).__init__()
-        self.setSpacing(0)
+        self.setContentsMargins(0,0,0,0)
+        self.setSpacing(25)
+        self.setAlignment(Qt.AlignTop)
 
     def addSong(self, mapWidget=MapWidget):
         self.addWidget(mapWidget)
