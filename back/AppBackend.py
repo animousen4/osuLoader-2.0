@@ -1,8 +1,10 @@
 from PyQt5.QtCore import QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineDownloadItem, QWebEngineProfile
 
 import ResourceNavigator
 from back.fileManager.FileManager import LoaderLevelManager
 from back.objects.song.Song import SongShortInfo
+from view.widget.browser.QBrowserWidget import QBrowserWidget
 from view.widget.songListDownload.microWidget.SongDownloadListWidget import MapWidget
 from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
@@ -44,9 +46,18 @@ class OnStart(AppBackendAction):
 class BrowserBackend(AppBackendAction):
     def setup(self):
         self.loadBeatMapPage()
+        self.setupBindings()
+        pass
 
     def loadBeatMapPage(self):
         self.windowLoaderLayout.browserWidget.load(QUrl(ResourceNavigator.Local.Url.beatMapUrl))
 
-    def onDownloadRequest(self):
+    def setupBindings(self):
+        self.windowLoaderLayout.browserWidget.downloadSignal.connect(self.onDownloadRequest)
+        #self.windowLoaderLayout.browserWidget.page().profile().downloadRequested.connect(self.onDownloadRequest)
+        pass
+
+    def onDownloadRequest(self, d=QWebEngineDownloadItem):
+        print("Download Requested")
+        d.cancel()
         pass
