@@ -39,6 +39,7 @@ class Variables:
         osuLoaderWindowName = "osu!Loader 2.0"
         osuPathSelectorWindowName = "First run"
         labelTextFirstRun = "Please select osu folder below"
+        labelInputOsuPathTip = "osu! path"
 
 
         buttonImportAllText = "Import all"

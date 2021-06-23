@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication
 import OsuLoader2Properties
 from back.fileManager import FileManager
 from view.window.osuLoader import OsuLoaderWindow
+from view.window.osuPathSelector import OsuPathSelectorWindow
 
 
 def isAvailableOsuPath():
@@ -20,6 +21,7 @@ def main():
         window = OsuLoaderWindow.OsuLoaderWindow()
     else:
         print("path isn't available")
+        window = OsuPathSelectorWindow.OsuPathSelectorWindow()
     app.exec_()
     pass
 

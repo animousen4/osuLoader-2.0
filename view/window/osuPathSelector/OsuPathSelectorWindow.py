@@ -21,3 +21,5 @@ class OsuPathSelectorWindow(QWidget):
         layout = OsuPathSelectorWindowLayout()
 
         self.setLayout(layout)
+
+        self.show()
