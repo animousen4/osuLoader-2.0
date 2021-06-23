@@ -7,3 +7,4 @@ class DownloadProgressBar(QProgressBar):
         self.setRange(0, 100)
         self.setTextVisible(False)
         self.setFixedHeight(15)
+

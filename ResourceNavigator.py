@@ -27,7 +27,7 @@ class Local:
         beatMapUrl = "https://osu.ppy.sh/beatmapsets"
 
     class Path:
-        songsPath = "Songs/"
+        songPath = "Songs/"
         tempPath = "temp/"
 
     class Song:

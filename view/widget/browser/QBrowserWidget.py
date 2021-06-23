@@ -4,28 +4,30 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEng
 from PyQt5.QtWidgets import QFrame
 
 import ResourceNavigator
+from view.widget.browser import QNotification
 
 
 class QBrowserWidget(QWebEngineView):
 
+    browserNotification = QNotification.BrowserNotification
+
     def __init__(self, d):
         super(QBrowserWidget, self).__init__()
 
-        self.dd = d
+        self.d = d
 
         self.setupBrowser()
 
     def setupBrowser(self):
         self.settings().setAttribute(QWebEngineSettings.ShowScrollBars, False)
         self.page().setBackgroundColor(QColor("#1f1f1f"))
-        self.page().profile().downloadRequested.connect(self.dd)
+        self.page().profile().downloadRequested.connect(self.d)
+        self.browserNotification = QNotification.BrowserNotification(self)
         #self.downloadSignal.connect(self.fff)
 
 
     def downloadRequested(self, d=QWebEngineDownloadItem):
         print("DOWNLOAD REQUESTED!")
-    def fff(self):
-        print("FFFF")
 
     def goBack(self):
         self.back()

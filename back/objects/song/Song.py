@@ -18,8 +18,11 @@ class SongShortInfo:
     def loadData(self, fName):
         self.fileName = fName
         self.songName = self.fileName.replace(".{}".format(ResourceNavigator.Local.Song.format), "")
-        self.songSize = os.path.getsize(ResourceNavigator.Local.Path.songsPath + self.fileName)
-        self.songPath = ResourceNavigator.Local.Path.songsPath + self.fileName
+        try:
+            self.songSize = os.path.getsize(ResourceNavigator.Local.Path.songPath + self.fileName)
+        except Exception:
+            self.songSize = -1
+        self.songPath = ResourceNavigator.Local.Path.songPath + self.fileName
 
 
 class SongFullInfo(SongShortInfo):
