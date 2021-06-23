@@ -7,23 +7,23 @@ import ResourceNavigator
 
 
 class QBrowserWidget(QWebEngineView):
-    downloadSignal = pyqtSignal(QWebEngineDownloadItem)
 
-    def __init__(self):
+    def __init__(self, d):
         super(QBrowserWidget, self).__init__()
+
+        self.dd = d
 
         self.setupBrowser()
 
     def setupBrowser(self):
         self.settings().setAttribute(QWebEngineSettings.ShowScrollBars, False)
         self.page().setBackgroundColor(QColor("#1f1f1f"))
-        self.page().profile().downloadRequested.connect(self.downloadRequested)
+        self.page().profile().downloadRequested.connect(self.dd)
         #self.downloadSignal.connect(self.fff)
 
 
     def downloadRequested(self, d=QWebEngineDownloadItem):
         print("DOWNLOAD REQUESTED!")
-        self.downloadSignal.emit(d)
     def fff(self):
         print("FFFF")
 

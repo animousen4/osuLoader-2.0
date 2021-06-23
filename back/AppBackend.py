@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QUrl, pyqtSignal, QObject
 from PyQt5.QtWebEngineWidgets import QWebEngineDownloadItem, QWebEngineProfile
 
 import ResourceNavigator
@@ -10,9 +10,18 @@ from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 
 class AppBackendInit:
+    layout = OsuLoaderWindowLayout
+
     def __init__(self, layout=OsuLoaderWindowLayout):
-        OnStart(layout)
-        BrowserBackend(layout)
+        self.layout = layout
+        self.preInit()
+
+    def preInit(self):
+        BrowserBackend(self.layout)
+
+    def postInit(self):
+        OnStart(self.layout)
+
 
 
 class AppBackendAction:
@@ -25,10 +34,12 @@ class AppBackendAction:
     def setup(self):
         pass
 
+
 class OnStart(AppBackendAction):
 
     def setup(self):
         self.openDownloadSongs()
+        self.loadBeatMapPage()
 
     def openDownloadSongs(self):
         fileManager = LoaderLevelManager()
@@ -42,22 +53,19 @@ class OnStart(AppBackendAction):
         mapWidget.mapActionButtons.setStatusDownloadFinished()
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
 
-
-class BrowserBackend(AppBackendAction):
-    def setup(self):
-        self.loadBeatMapPage()
-        self.setupBindings()
-        pass
-
     def loadBeatMapPage(self):
         self.windowLoaderLayout.browserWidget.load(QUrl(ResourceNavigator.Local.Url.beatMapUrl))
 
-    def setupBindings(self):
-        self.windowLoaderLayout.browserWidget.downloadSignal.connect(self.onDownloadRequest)
-        #self.windowLoaderLayout.browserWidget.page().profile().downloadRequested.connect(self.onDownloadRequest)
+
+class BrowserBackend(AppBackendAction):
+    def setup(self):
+        browser = QBrowserWidget(self.onDownloadRequest)
+        self.windowLoaderLayout.browserWidget = browser
+        self.windowLoaderLayout.initWidgets()
         pass
 
     def onDownloadRequest(self, d=QWebEngineDownloadItem):
-        print("Download Requested")
+
+        print("Download Requested {}".format(d.suggestedFileName()))
         d.cancel()
         pass

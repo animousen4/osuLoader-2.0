@@ -26,13 +26,17 @@ class OsuLoaderWindow(QWidget):
 
         self.osuLoaderWindowLayout = OsuLoaderWindowLayout()
 
+        self.appBackend = AppBackendInit(self.osuLoaderWindowLayout)
+
         self.setLayout(self.osuLoaderWindowLayout)
 
         self.setFixedSize(1280, 720)
 
+        self.appBackend.postInit()
+
         self.show()
 
-        self.appBackend = AppBackendInit(self.osuLoaderWindowLayout)
+
 
 
     def initStyles(self):
