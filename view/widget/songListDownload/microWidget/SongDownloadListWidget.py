@@ -65,12 +65,14 @@ class ActionButtonPanelWidget(QFrame):
     actionButtonImport = ActionButtonImport
     actionButtonCancelDownload = ActionButtonCancelDownload
 
-    def __init__(self):
+    def __init__(self, bindPack):
         super(ActionButtonPanelWidget, self).__init__()
 
         self.actionButtonDeleteFile = ActionButtonDeleteFile()
         self.actionButtonImport = ActionButtonImport()
         self.actionButtonCancelDownload = ActionButtonCancelDownload()
+
+        self.initBindings(bindPack)
 
         self.initWidget()
 
@@ -82,11 +84,18 @@ class ActionButtonPanelWidget(QFrame):
         # ...
         self.setLayout(self.hWidgetLayout)
 
+    def initBindings(self, bindPack):
+        self.actionButtonImport.clicked.connect(lambda state, s=bindPack.song: bindPack.onActionButtonImportClick(state, s))
+        self.actionButtonDeleteFile.clicked.connect(lambda state, s=bindPack.song: bindPack.onActionButtonDeleteClick(state, s))
+        self.actionButtonCancelDownload.clicked.connect(lambda state, s=bindPack.song: bindPack.onActionButtonCancelDownloadClick(state, s))
+        pass
+
     def setStatusDownloading(self):
         self.hWidgetLayout.addWidget(self.actionButtonCancelDownload)
 
     def setStatusDownloadFinished(self):
         self.hWidgetLayout.removeWidget(self.actionButtonCancelDownload)
+        self.actionButtonCancelDownload.deleteLater()
         self.hWidgetLayout.addWidget(self.actionButtonImport)
         self.hWidgetLayout.addWidget(self.actionButtonDeleteFile)
 
@@ -96,17 +105,17 @@ class MapWidget(QFrame):
 
     commonSongData = CommonSongDataWidget
 
-    def __init__(self):
+    def __init__(self, bindPack):
         super(MapWidget, self).__init__()
 
-        self.initWidget()
+        self.initWidget(bindPack)
 
-    def initWidget(self):
+    def initWidget(self, bindPack):
         horizontalLayout = QHBoxLayout()
         horizontalLayout.setContentsMargins(0, 0, 0, 0)
         horizontalLayout.setSpacing(20)
 
-        self.mapActionButtons = ActionButtonPanelWidget()
+        self.mapActionButtons = ActionButtonPanelWidget(bindPack)
 
         self.commonSongData = CommonSongDataWidget()
 
@@ -114,7 +123,11 @@ class MapWidget(QFrame):
         horizontalLayout.addWidget(self.mapActionButtons)
 
         self.setLayout(horizontalLayout)
-        # here
+
+    def onDownloadFinished(self):
+        self.mapActionButtons.setStatusDownloadFinished()
+        self.commonSongData.song.songStatus = SongShortInfo.SongStatus.downloadFinished
+        pass
 
 
 class MapListWidget(QVBoxLayout):

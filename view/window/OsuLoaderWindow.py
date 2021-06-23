@@ -30,7 +30,7 @@ class OsuLoaderWindow(QWidget):
 
         self.setLayout(self.osuLoaderWindowLayout)
 
-        self.setFixedSize(1280, 720)
+        self.setMinimumSize(1280, 720)
 
         self.appBackend.postInit()
 

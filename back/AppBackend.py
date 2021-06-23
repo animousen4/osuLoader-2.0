@@ -24,7 +24,6 @@ class AppBackendInit:
         OnStart(self.layout)
 
 
-
 class AppBackendAction:
     windowLoaderLayout = OsuLoaderWindowLayout
 
@@ -54,10 +53,46 @@ class OnStart(AppBackendAction):
 
 
 class SongListBackend(AppBackendAction):
+    class ActionButtonController:
+        class BindPack:
+            song = SongShortInfo
+
+            onActionButtonImportClick = None
+            onActionButtonCancelDownloadClick = None
+            onActionButtonDeleteClick = None
+
+        mapWidget = MapWidget
+
+        def __init__(self, mapWidget):
+            self.mapWidget = mapWidget
+
+        def bindButtons(self):
+            self.mapWidget.mapActionButtons.actionButtonImport.clicked.connect(self.onActionButtonImportClick)
+
+        def onActionButtonImportClick(self, s):
+            print("Import - {}".format(s.fileName))
+
+        def onActionButtonCancelDownloadClick(self, s):
+            print("Cancel download - {}".format(s.fileName))
+
+        def onActionButtonDeleteClick(self, s):
+            print("Delete file - {}".format(s.fileName))
+
+    def getBindings(self, s=SongShortInfo):
+        bindPack = self.ActionButtonController.BindPack()
+
+        bindPack.onActionButtonDeleteClick = self.ActionButtonController.onActionButtonDeleteClick
+        bindPack.onActionButtonCancelDownloadClick = self.ActionButtonController.onActionButtonCancelDownloadClick
+        bindPack.onActionButtonImportClick = self.ActionButtonController.onActionButtonImportClick
+        bindPack.song = s
+
+        return bindPack
+
     def addDownloaderSongToView(self, song=SongShortInfo):
-        mapWidget = MapWidget()
+        mapWidget = MapWidget(self.getBindings(song))
         mapWidget.commonSongData.setSongData(song)
         mapWidget.mapActionButtons.setStatusDownloadFinished()
+
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
 
     def addDownloaderDownloadingSongToView(self, song=SongShortInfo, d=QWebEngineDownloadItem):
@@ -65,15 +100,17 @@ class SongListBackend(AppBackendAction):
         mapWidget.commonSongData.setSongData(song)
         mapWidget.mapActionButtons.setStatusDownloading()
         d.downloadProgress.connect(mapWidget.commonSongData.mapSizeLabel.updateSize)
+        d.finished.connect(mapWidget.onDownloadFinished)
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
 
 
 class BrowserBackend(AppBackendAction):
     songListBackend = SongListBackend
     browser = QBrowserWidget
+
     def setup(self):
         self.browser = QBrowserWidget(self.onDownloadRequest)
-        #self.browser.page().profile().dow
+        # self.browser.page().profile().dow
         self.windowLoaderLayout.browserWidget = self.browser
         self.windowLoaderLayout.initWidgets()
         self.songListBackend = SongListBackend(self.windowLoaderLayout)
@@ -107,4 +144,3 @@ class BrowserBackend(AppBackendAction):
         song.loadData(FileManager.cleanFileName(d.suggestedFileName()))
         song.songSize = d.receivedBytes()
         return song
-
