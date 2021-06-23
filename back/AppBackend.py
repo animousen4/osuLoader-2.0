@@ -18,6 +18,7 @@ class AppBackendInit:
         self.preInit()
 
     def preInit(self):
+        Layout.windowLoaderLayout = self.layout
         BrowserBackend(self.layout)
 
     def postInit(self):
@@ -33,6 +34,18 @@ class AppBackendAction:
 
     def setup(self):
         pass
+
+
+class Layout:
+    windowLoaderLayout = OsuLoaderWindowLayout
+
+    def findWidgetBySong(s=SongShortInfo):
+        count = Layout.windowLoaderLayout.songPanel.songDownloadList.mapList.count()
+        for i in range(count):
+            widget = Layout.windowLoaderLayout.songPanel.songDownloadList.mapList.itemAt(i).widget()
+            if widget.commonSongData.song.songPath == s.songPath:
+                return widget
+        return None
 
 
 class OnStart(AppBackendAction):
@@ -57,6 +70,8 @@ class SongListBackend(AppBackendAction):
         class BindPack:
             song = SongShortInfo
 
+            d = QWebEngineDownloadItem
+
             onActionButtonImportClick = None
             onActionButtonCancelDownloadClick = None
             onActionButtonDeleteClick = None
@@ -66,17 +81,18 @@ class SongListBackend(AppBackendAction):
         def __init__(self, mapWidget):
             self.mapWidget = mapWidget
 
-        def bindButtons(self):
-            self.mapWidget.mapActionButtons.actionButtonImport.clicked.connect(self.onActionButtonImportClick)
-
         def onActionButtonImportClick(self, s):
             print("Import - {}".format(s.fileName))
+            Layout.findWidgetBySong(s).deleteLater()
 
-        def onActionButtonCancelDownloadClick(self, s):
+        def onActionButtonCancelDownloadClick(self, s=SongShortInfo):
             print("Cancel download - {}".format(s.fileName))
+            Layout.findWidgetBySong(s).deleteLater()
 
-        def onActionButtonDeleteClick(self, s):
+        def onActionButtonDeleteClick(self, s=SongShortInfo):
             print("Delete file - {}".format(s.fileName))
+            FileManager.deleteSong(s)
+            Layout.findWidgetBySong(s).deleteLater()
 
     def getBindings(self, s=SongShortInfo):
         bindPack = self.ActionButtonController.BindPack()
@@ -96,7 +112,7 @@ class SongListBackend(AppBackendAction):
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
 
     def addDownloaderDownloadingSongToView(self, song=SongShortInfo, d=QWebEngineDownloadItem):
-        mapWidget = MapWidget()
+        mapWidget = MapWidget(self.getBindings(song))
         mapWidget.commonSongData.setSongData(song)
         mapWidget.mapActionButtons.setStatusDownloading()
         d.downloadProgress.connect(mapWidget.commonSongData.mapSizeLabel.updateSize)

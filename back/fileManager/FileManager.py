@@ -19,6 +19,9 @@ def isFileExist(fileName):
         return True
     else:
         return False
+
+def deleteSong(song=SongShortInfo):
+    os.remove(song.songPath)
 class LoaderLevelManager:
     songList = []
 
