@@ -1,6 +1,13 @@
 import ResourceNavigator
 
+class app:
+    class window:
+        windowTitle = ""
 
-class OsuLoader2Properties:
-    def __init__(self):
-        pass
+        class windowResolution:
+            x = 1280
+            y = 720
+
+class osu:
+    osuPath = None
+

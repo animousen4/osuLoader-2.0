@@ -1,11 +1,14 @@
 import os
 import zipfile
 
+from PyQt5.QtWebEngineWidgets import QWebEngineDownloadItem
+
 import ResourceNavigator
 from back.osu.parser.OsuSongParser import OsuSongParser
 
 
 class SongShortInfo:
+    d = QWebEngineDownloadItem
     class SongStatus:
         downloadFinished = 0
         downloading = 1

@@ -1,14 +1,14 @@
 {
   "app": {
     "window": {
-      "WindowTitle": "osu! Loader 2.0",
-      "WindowResolution": {
+      "windowTitle": "osu! Loader 2.0",
+      "windowResolution": {
         "x": 1280,
         "y": 720
       }
     },
     "osu": {
-      "path": null
+      "osuPath": null
     }
   }
 }

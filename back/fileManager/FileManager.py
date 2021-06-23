@@ -1,5 +1,7 @@
+import json
 import os
 
+import OsuLoader2Properties
 import ResourceNavigator
 from back.objects.song.Song import SongShortInfo
 
@@ -22,6 +24,20 @@ def isFileExist(fileName):
 
 def deleteSong(song=SongShortInfo):
     os.remove(song.songPath)
+
+def importSong(song=SongShortInfo):
+    pass
+
+
+class PropertiesLoader:
+    def loadProperties(self):
+        f = open(ResourceNavigator.PropertiesNavigator.pathOsuLoaderPropertiesJSON, "r")
+        JSON = json.loads(f.read())
+        OsuLoader2Properties.app.window.windowTitle = JSON['app']['window']['windowTitle']
+        OsuLoader2Properties.app.window.windowResolution.x = JSON['app']['window']['windowResolution']['x']
+        OsuLoader2Properties.app.window.windowResolution.y = JSON['app']['window']['windowResolution']['y']
+        OsuLoader2Properties.osu.osuPath = JSON['app']['osu']['osuPath']
+
 class LoaderLevelManager:
     songList = []
 
@@ -41,3 +57,4 @@ class LoaderLevelManager:
 
 class OsuLevelManager:
     pass
+

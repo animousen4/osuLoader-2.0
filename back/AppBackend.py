@@ -1,5 +1,5 @@
-from PyQt5.QtCore import QUrl, pyqtSignal, QObject
-from PyQt5.QtWebEngineWidgets import QWebEngineDownloadItem, QWebEngineProfile
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineDownloadItem
 
 import ResourceNavigator
 from back.fileManager import FileManager
@@ -7,7 +7,7 @@ from back.fileManager.FileManager import LoaderLevelManager
 from back.objects.song.Song import SongShortInfo
 from view.widget.browser.QBrowserWidget import QBrowserWidget
 from view.widget.songListDownload.microWidget.SongDownloadListWidget import MapWidget
-from view.window.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
+from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 
 class AppBackendInit:
@@ -70,8 +70,6 @@ class SongListBackend(AppBackendAction):
         class BindPack:
             song = SongShortInfo
 
-            d = QWebEngineDownloadItem
-
             onActionButtonImportClick = None
             onActionButtonCancelDownloadClick = None
             onActionButtonDeleteClick = None
@@ -83,10 +81,12 @@ class SongListBackend(AppBackendAction):
 
         def onActionButtonImportClick(self, s):
             print("Import - {}".format(s.fileName))
+            FileManager.importSong(s)
             Layout.findWidgetBySong(s).deleteLater()
 
         def onActionButtonCancelDownloadClick(self, s=SongShortInfo):
             print("Cancel download - {}".format(s.fileName))
+            s.d.cancel()
             Layout.findWidgetBySong(s).deleteLater()
 
         def onActionButtonDeleteClick(self, s=SongShortInfo):
@@ -115,6 +115,7 @@ class SongListBackend(AppBackendAction):
         mapWidget = MapWidget(self.getBindings(song))
         mapWidget.commonSongData.setSongData(song)
         mapWidget.mapActionButtons.setStatusDownloading()
+        song.d = d
         d.downloadProgress.connect(mapWidget.commonSongData.mapSizeLabel.updateSize)
         d.finished.connect(mapWidget.onDownloadFinished)
         self.windowLoaderLayout.songPanel.songDownloadList.mapList.addSong(mapWidget)
