@@ -6,15 +6,18 @@ from view.widget.pathSelector.PathSelectorWidget import PathSelectorWidget
 
 
 class OsuPathSelectorWindowLayout(QVBoxLayout):
-    pathSelector = PathSelectorWidget()
+    pathSelector = PathSelectorWidget
+
     def __init__(self):
         super(OsuPathSelectorWindowLayout, self).__init__()
 
         firstRunLabel = FirstRunLabel()
 
+        #self.pathSelector = PathSelectorWidget(bp)
+
         self.setAlignment(Qt.AlignHCenter)
 
         self.addWidget(firstRunLabel)
 
-        self.addWidget(self.pathSelector)
+        #self.addWidget(self.pathSelector)
 

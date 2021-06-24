@@ -1,0 +1,14 @@
+{
+  "app": {
+    "window": {
+      "windowTitle": "osu! Loader 2.0",
+      "windowResolution": {
+        "x": 1280,
+        "y": 720
+      }
+    },
+    "osu": {
+      "osuPath": null
+    }
+  }
+}

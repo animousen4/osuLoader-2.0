@@ -9,7 +9,7 @@ from view.window.osuPathSelector import OsuPathSelectorWindow
 
 
 def isAvailableOsuPath():
-    if OsuLoader2Properties.osu.osuPath != None:
+    if OsuLoader2Properties.Properties.app.osu.osuPath != None:
         return True
     return False
 def main():

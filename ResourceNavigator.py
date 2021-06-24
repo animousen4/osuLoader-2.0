@@ -29,6 +29,7 @@ class Local:
     class Path:
         songPath = "Songs/"
         tempPath = "temp/"
+        osuExeFileName = "osu.exe"
 
     class Song:
         format = "osz"
@@ -39,6 +40,7 @@ class Variables:
         osuLoaderWindowName = "osu!Loader 2.0"
         osuPathSelectorWindowName = "First run"
         labelTextFirstRun = "Please select osu folder below"
+        labelTextFirstRunDialog = "Select osu folder"
         labelInputOsuPathTip = "osu! path"
 
 

@@ -11,7 +11,6 @@ def cleanFileName(fileName=str):
         .replace("|", "").replace(">", "").replace("<", "")
     return fileName
 
-
 def isAcceptableFormat(fileName):
     if fileName.__contains__(".{}".format(ResourceNavigator.Local.Song.format)):
         return True
@@ -22,6 +21,12 @@ def isFileExist(fileName):
     else:
         return False
 
+
+def isOsuFolder(filePath):
+    if os.path.isfile(filePath + "/{}".format(ResourceNavigator.Local.Path.osuExeFileName)):
+        return True
+    else:
+        return False
 def deleteSong(song=SongShortInfo):
     os.remove(song.songPath)
 
@@ -33,10 +38,22 @@ class PropertiesLoader:
     def loadProperties(self):
         f = open(ResourceNavigator.PropertiesNavigator.pathOsuLoaderPropertiesJSON, "r")
         JSON = json.loads(f.read())
-        OsuLoader2Properties.app.window.windowTitle = JSON['app']['window']['windowTitle']
-        OsuLoader2Properties.app.window.windowResolution.x = JSON['app']['window']['windowResolution']['x']
-        OsuLoader2Properties.app.window.windowResolution.y = JSON['app']['window']['windowResolution']['y']
-        OsuLoader2Properties.osu.osuPath = JSON['app']['osu']['osuPath']
+        OsuLoader2Properties.Properties.app.window.windowTitle = JSON['app']['window']['windowTitle']
+        OsuLoader2Properties.Properties.app.window.windowResolution.x = JSON['app']['window']['windowResolution']['x']
+        OsuLoader2Properties.Properties.app.window.windowResolution.y = JSON['app']['window']['windowResolution']['y']
+        OsuLoader2Properties.Properties.app.osu.osuPath = JSON['app']['osu']['osuPath']
+        f.close()
+
+    def saveProperties(self):
+        #f = open(ResourceNavigator.PropertiesNavigator.pathOsuLoaderPropertiesJSON, "w")
+        #dict = OsuLoader2Properties.Properties.__dict__
+        #json.JSONEncoder().encode()
+            #f.write(chunk)
+        #f.close()
+        #JSON = json.dumps()
+        #f.write(JSON)
+        #f.close()
+        pass
 
 class LoaderLevelManager:
     songList = []
