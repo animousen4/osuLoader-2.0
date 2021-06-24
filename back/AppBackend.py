@@ -81,7 +81,8 @@ class SongListBackend(AppBackendAction):
 
         def onActionButtonImportClick(self, s):
             print("Import - {}".format(s.fileName))
-            FileManager.importSong(s)
+            loaderLevelManager = LoaderLevelManager()
+            loaderLevelManager.unpackSong(s)
             Layout.findWidgetBySong(s).deleteLater()
 
         def onActionButtonCancelDownloadClick(self, s=SongShortInfo):
@@ -138,7 +139,7 @@ class BrowserBackend(AppBackendAction):
         print("Download Requested {}".format(song.fileName))
 
         if FileManager.isAcceptableFormat(song.fileName):
-            if not FileManager.isFileExist(song.fileName):
+            if not FileManager.isSongExist(song.fileName):
                 print("Download accepted!")
                 song.songStatus = song.SongStatus.downloading
                 d.setPath(song.songPath)

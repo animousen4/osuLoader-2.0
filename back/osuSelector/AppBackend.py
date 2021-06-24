@@ -36,6 +36,9 @@ class AppBackendAction:
 
 
 class SelectorBackend(AppBackendAction):
+    nextButtonAvailable = False
+    folderPath = "folderPath"
+
     class BindPack:
         onOpenExplorer = None
         onNext = None
@@ -56,18 +59,28 @@ class SelectorBackend(AppBackendAction):
         return bp
 
     def onOpenExplorerClick(self):
-        print("Op ex")
+        print("Op explorer")
         folderPath= QFileDialog.getExistingDirectory(None, ResourceNavigator.Variables.Strings.labelTextFirstRunDialog)
+        #Layout.layout.pathSelector.inputLabelSelectPath.setText(0, folderPath)
+        #here
+        if FileManager.isOsuFolder(folderPath):
+            self.folderPath = folderPath
+            self.nextButtonAvailable = True
+            print("Found osu folder!")
+            self.nextButtonAvailable = True
 
-        if not FileManager.isOsuFolder(folderPath):
-            print("Saving changes...")
-            OsuLoader2Properties.Properties.app.osu.osuPath = folderPath
-            FileManager.PropertiesLoader.saveProperties(None)
         else:
             print("Not osu folder!")
+            self.nextButtonAvailable = False
+        pass
+    def onEdit(self):
         pass
 
+
     def onNextClick(self):
+        print("Saving changes...")
+        OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
+        FileManager.PropertiesLoader.saveProperties(None)
         pass
 
     def onCloseClick(self):
