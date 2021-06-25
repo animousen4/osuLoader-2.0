@@ -40,6 +40,8 @@ class SelectorBackend(AppBackendAction):
     nextButtonAvailable = False
     folderPath = "folderPath"
 
+    pathSelectorWidget = PathSelectorWidget
+    actionButtonWidget = ActionButtonWidget
     class BindPack:
         onOpenExplorer = None
         onNext = None
@@ -48,9 +50,13 @@ class SelectorBackend(AppBackendAction):
 
     def setup(self):
         bp = self.getBP()
+        self.pathSelectorWidget = PathSelectorWidget(bp)
+        self.actionButtonWidget = ActionButtonWidget(bp)
 
-        Layout.layout.addWidget(PathSelectorWidget(bp))
-        Layout.layout.addWidget(ActionButtonWidget(bp))
+        self.actionButtonWidget.nextButton.setDisabled(True)
+
+        Layout.layout.addWidget(self.pathSelectorWidget)
+        Layout.layout.addWidget(self.actionButtonWidget)
         pass
 
     def getBP(self):
@@ -81,8 +87,8 @@ class SelectorBackend(AppBackendAction):
 
     def onNextClick(self):
         print("Saving changes...")
-        OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
-        FileManager.PropertiesLoader.saveProperties(None)
+        #OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
+        #FileManager.PropertiesLoader.saveProperties(None)
         pass
 
     def onExitClick(self):

@@ -10,5 +10,8 @@ class IconButton(QPushButton):
     pass
 
 
-class MediumButton(QPushButton):
+class StandardButton(QPushButton):
+    def __init__(self):
+        super(StandardButton, self).__init__()
+        self.setMinimumSize(60, 20)
     pass

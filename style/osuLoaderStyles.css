@@ -10,8 +10,16 @@ QLabel{
   color: @textColor;
 }
 QPushButton{
-  border: none;
+  color: @textColor;
   background-color: transparent;
+}
+IconButton{
+  border: none;
+}
+StandardButton{
+  border: 2px solid @textDarkColor;
+  border-radius: 8;
+  padding: 5%;
 }
 QVBoxLayout{
   margin-bottom: 0px;
@@ -63,4 +71,3 @@ LargeLabel{
 SmallLabel{
   font: 10pt 'Exo 2 Bold';
 }
-        

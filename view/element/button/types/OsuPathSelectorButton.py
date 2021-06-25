@@ -1,7 +1,8 @@
 from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QPushButton
 
 import ResourceNavigator
-from view.element.button.ButtonTypes import IconButton, MediumButton
+from view.element.button.ButtonTypes import IconButton, StandardButton
 
 
 class OpenExplorerButton(IconButton):
@@ -11,15 +12,15 @@ class OpenExplorerButton(IconButton):
         self.clicked.connect(lambda state, a = act: act())
 
 
-class NextButton(MediumButton):
-    def __init__(self, f):
+class NextButton(StandardButton):
+    def __init__(self, act):
         super(NextButton, self).__init__()
         self.setText(ResourceNavigator.Variables.Strings.buttonNext)
-        self.clicked.connect(f)
+        self.clicked.connect(lambda state, a = act: act())
 
 
-class ExitButton(MediumButton):
-    def __init__(self, f):
+class ExitButton(StandardButton):
+    def __init__(self, act):
         super(ExitButton, self).__init__()
         self.setText(ResourceNavigator.Variables.Strings.buttonExit)
-        self.clicked.connect(f)
+        self.clicked.connect(lambda state, a = act: act())
