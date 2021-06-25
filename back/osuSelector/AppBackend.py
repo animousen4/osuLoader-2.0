@@ -1,10 +1,15 @@
+import os
+import sys
+
 from PyQt5.QtWidgets import QFileDialog
 
+import OsuLoader2
 import OsuLoader2Properties
 import ResourceNavigator
 from back.fileManager import FileManager
 from view.widget.pathSelector.ActionButtonWidget import ActionButtonWidget
 from view.widget.pathSelector.PathSelectorWidget import PathSelectorWidget
+from view.window.osuLoader.OsuLoaderWindow import OsuLoaderWindow
 from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 from view.window.osuPathSelector.layout.OsuPathSelectorWindowLayout import OsuPathSelectorWindowLayout
 
@@ -99,10 +104,8 @@ class SelectorBackend(AppBackendAction):
         print("Saving changes...")
         OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
         FileManager.PropertiesLoader.saveProperties(None)
-
-        pass
+        exit(0)
 
     def onExitClick(self):
         print("Exit...")
         exit(0)
-        pass
