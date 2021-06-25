@@ -132,6 +132,7 @@ class LoaderLevelManager:
         zipExtractor = zipfile.ZipFile(s.songPath)
         zipExtractor.extractall("{}/{}/{}".format(OsuLoader2Properties.Properties.app.osu.osuPath, ResourceNavigator.Local.Osu.songPath, s.songName))
         zipExtractor.close()
+        deleteSong(s)
 
 
 class FileChecker:

@@ -2,7 +2,7 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QWidget
 
 import ResourceNavigator
-from back.AppBackend import AppBackendInit
+from back.osuLoader.AppBackend import AppBackendInit
 from back.css.style import cssLoader
 from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 

@@ -1,8 +1,8 @@
 import ResourceNavigator
-from view.element.button.ButtonTypes import StandardButton
+from view.element.button.ButtonTypes import LevelButton
 
 
-class ImportDelAllButton(StandardButton):
+class ImportDelAllButton(LevelButton):
     pass
 
 

@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget, QScrollArea
 
 from back.objects.song.Song import SongShortInfo
 from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFile, \
@@ -149,6 +149,15 @@ class SongDownloadListWidget(QFrame):
         super(SongDownloadListWidget, self).__init__()
 
         self.mapList = MapListWidget()
+
+        #mapListWidget = QWidget()
+        #mapListWidget.setLayout(self.mapList)
+
+        #downloadScroller = QScrollArea()
+        #downloadScroller.setWidget(mapListWidget)
+
+        #downloadScrollerLayout = QVBoxLayout()
+        #downloadScrollerLayout.addWidget(downloadScroller)
 
         self.setLayout(self.mapList)
 

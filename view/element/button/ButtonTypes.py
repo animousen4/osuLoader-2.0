@@ -15,3 +15,10 @@ class StandardButton(QPushButton):
         super(StandardButton, self).__init__()
         self.setMinimumSize(60, 20)
     pass
+
+
+class LevelButton(QPushButton):
+    def __init__(self):
+        super(LevelButton, self).__init__()
+
+    pass

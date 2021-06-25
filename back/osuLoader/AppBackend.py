@@ -85,7 +85,7 @@ class SongListBackend(AppBackendAction):
             loaderLevelManager.unpackSong(s)
             Layout.findWidgetBySong(s).deleteLater()
 
-        def onActionButtonCancelDownloadClick(self, s=SongShortInfo):
+        def onActionButtonCancelDownloadClick(self, s):
             print("Cancel download - {}".format(s.fileName))
             s.d.cancel()
             Layout.findWidgetBySong(s).deleteLater()
