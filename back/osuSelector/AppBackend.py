@@ -53,11 +53,26 @@ class SelectorBackend(AppBackendAction):
         self.pathSelectorWidget = PathSelectorWidget(bp)
         self.actionButtonWidget = ActionButtonWidget(bp)
 
-        self.actionButtonWidget.nextButton.setDisabled(True)
-
         Layout.layout.addWidget(self.pathSelectorWidget)
         Layout.layout.addWidget(self.actionButtonWidget)
-        pass
+
+        self.updateButtonNextState()
+
+    def checkCorrectFolder(self):
+        folderPath = self.pathSelectorWidget.inputLabelSelectPath.text()
+        if FileManager.isOsuFolder(folderPath):
+            self.folderPath = folderPath
+            self.nextButtonAvailable = True
+            print("Found osu folder!")
+
+        else:
+            print("Not osu folder!")
+            self.folderPath = "folderPath"
+            self.nextButtonAvailable = False
+        self.updateButtonNextState()
+
+    def updateButtonNextState(self):
+        self.actionButtonWidget.nextButton.setDisabled(not self.nextButtonAvailable)
 
     def getBP(self):
         bp = self.BindPack()
@@ -72,24 +87,22 @@ class SelectorBackend(AppBackendAction):
         print("Op explorer")
         folderPath= QFileDialog.getExistingDirectory(None, ResourceNavigator.Variables.Strings.labelTextFirstRunDialog)
         print("chosen folder - {}".format(folderPath))
-        if FileManager.isOsuFolder(folderPath):
-            self.folderPath = folderPath
-            self.nextButtonAvailable = True
-            print("Found osu folder!")
+        self.pathSelectorWidget.inputLabelSelectPath.setText(folderPath)
+        self.checkCorrectFolder()
 
-        else:
-            print("Not osu folder!")
-            self.nextButtonAvailable = False
-        pass
     def onEdit(self):
-        pass
-
+        textLineEdit = self.pathSelectorWidget.inputLabelSelectPath.text()
+        print("edit - {}".format(textLineEdit))
+        self.checkCorrectFolder()
 
     def onNextClick(self):
         print("Saving changes...")
-        #OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
-        #FileManager.PropertiesLoader.saveProperties(None)
+        OsuLoader2Properties.Properties.app.osu.osuPath = self.folderPath
+        FileManager.PropertiesLoader.saveProperties(None)
+
         pass
 
     def onExitClick(self):
+        print("Exit...")
+        exit(0)
         pass

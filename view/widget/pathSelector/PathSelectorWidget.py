@@ -13,7 +13,7 @@ class PathSelectorWidget(QFrame):
 
         horizontalLayout = QHBoxLayout()
 
-        self.inputLabelSelectPath = InputLabelSelectPath()
+        self.inputLabelSelectPath = InputLabelSelectPath(bp.onEdit)
 
         self.buttonOpenExplorer = OpenExplorerButton(bp.onOpenExplorer)
 

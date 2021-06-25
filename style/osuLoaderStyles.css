@@ -17,9 +17,20 @@ IconButton{
   border: none;
 }
 StandardButton{
-  border: 2px solid @textDarkColor;
+  border: 2px solid;
   border-radius: 8;
   padding: 5%;
+}
+StandardButton:enabled{
+  border-color: @textColor;
+  color: @textColor;
+}
+StandardButton:disabled{
+  border-color: @textDisabled;
+  color: @textDisabled;
+}
+SimpleInputLabel{
+  color: @textColor;
 }
 QVBoxLayout{
   margin-bottom: 0px;

@@ -3,5 +3,6 @@
 @browserColor = #1f1f1f
 @textColor = #ababab
 @textDarkColor = #8f8f8f
+@textDisabled = #5e5e5e
 @greenColor = #73AD21
 @redColor = #AD2121
