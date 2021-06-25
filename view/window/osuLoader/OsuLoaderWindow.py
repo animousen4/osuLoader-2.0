@@ -1,4 +1,5 @@
 from PyQt5 import QtGui
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget
 
 import ResourceNavigator
@@ -22,6 +23,8 @@ class OsuLoaderWindow(QWidget):
         print("Init UI...")
 
         self.setWindowTitle(ResourceNavigator.Variables.Strings.osuLoaderWindowName)
+
+        self.setWindowIcon(QIcon(ResourceNavigator.MaterialNavigator.icoLogo))
 
         self.initFonts()
 
