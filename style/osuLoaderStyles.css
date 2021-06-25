@@ -52,8 +52,11 @@ ImportDelAllButton{
   color: @textColor;
   background-color: transparent;
   border-radius: 8;
-  border: 2px solid @textDarkColor;
+  border: 2px solid;
   background: transparent;
+}
+ImportDelAllButton:disabled{
+  border-color: @textDarkColor;
 }
 
 DownloadProgressBar{
@@ -67,11 +70,11 @@ DownloadProgressBar::chunk{
   background-color: #b8b8b8;
   width: 1px;
 }
-ImportAllButton{
+ImportAllButton:enabled{
   border: 2px solid @greenColor;
 }
 
-DeleteAllButton{
+DeleteAllButton:enabled{
   border: 2px solid @redColor;
 }
 

@@ -5,6 +5,7 @@ from back.objects.song.Song import SongShortInfo
 from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFile, \
     ActionButtonCancelDownload
 from view.element.progressBar.ProgressBarTypes import DownloadProgressBar
+from view.element.scrollArea.SimpleScrollArea import SimpleScrollArea
 from view.element.textLabel.types.MapLabel import MapSizeLabel, MapNameLabel
 
 
@@ -149,15 +150,6 @@ class SongDownloadListWidget(QFrame):
         super(SongDownloadListWidget, self).__init__()
 
         self.mapList = MapListWidget()
-
-        #mapListWidget = QWidget()
-        #mapListWidget.setLayout(self.mapList)
-
-        #downloadScroller = QScrollArea()
-        #downloadScroller.setWidget(mapListWidget)
-
-        #downloadScrollerLayout = QVBoxLayout()
-        #downloadScrollerLayout.addWidget(downloadScroller)
 
         self.setLayout(self.mapList)
 

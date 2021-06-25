@@ -12,7 +12,7 @@ class OsuLoaderWindowLayout(QHBoxLayout):
 
         self.setContentsMargins(0, 0, 0, 0)
 
-        self.songPanel = QSongListDownloadPanel()
+        #self.songPanel = QSongListDownloadPanel()
 
     def initWidgets(self):
         self.addWidget(self.browserWidget, 4)

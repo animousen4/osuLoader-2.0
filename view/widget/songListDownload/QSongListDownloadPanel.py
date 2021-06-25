@@ -14,14 +14,14 @@ class QSongListDownloadPanel(QFrame):
 
     songDownloadList = SongDownloadListWidget
 
-    def __init__(self):
+    def __init__(self, bp):
         super(QSongListDownloadPanel, self).__init__()
 
         verticalLayout = QVBoxLayout()
 
         #verticalLayout.setAlignment(Qt.AlignTop)
 
-        self.importDelAllButtons = ImportDelAllButtonWidget()
+        self.importDelAllButtons = ImportDelAllButtonWidget(bp)
 
         self.songDownloadList = SongDownloadListWidget()
 

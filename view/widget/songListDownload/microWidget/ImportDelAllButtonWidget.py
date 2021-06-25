@@ -8,16 +8,16 @@ class ImportDelAllButtonWidget(QFrame):
     buttonImportAll = ImportAllButton
     buttonDeleteAll = DeleteAllButton
 
-    def __init__(self):
+    def __init__(self, bp):
         super(ImportDelAllButtonWidget, self).__init__()
 
         horizontalLayout = QHBoxLayout()
 
         horizontalLayout.setAlignment(Qt.AlignBottom)
 
-        self.buttonImportAll = ImportAllButton()
+        self.buttonImportAll = ImportAllButton(bp.onImportAll)
 
-        self.buttonDeleteAll = DeleteAllButton()
+        self.buttonDeleteAll = DeleteAllButton(bp.onDeleteAll)
 
         horizontalLayout.addWidget(self.buttonImportAll)
 
