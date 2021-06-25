@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QFileDialog
 import OsuLoader2Properties
 import ResourceNavigator
 from back.fileManager import FileManager
+from view.widget.pathSelector.ActionButtonWidget import ActionButtonWidget
 from view.widget.pathSelector.PathSelectorWidget import PathSelectorWidget
 from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 from view.window.osuPathSelector.layout.OsuPathSelectorWindowLayout import OsuPathSelectorWindowLayout
@@ -42,32 +43,33 @@ class SelectorBackend(AppBackendAction):
     class BindPack:
         onOpenExplorer = None
         onNext = None
-        onClose = None
+        onExit = None
+        onEdit = None
 
     def setup(self):
         bp = self.getBP()
 
         Layout.layout.addWidget(PathSelectorWidget(bp))
+        Layout.layout.addWidget(ActionButtonWidget(bp))
         pass
 
     def getBP(self):
         bp = self.BindPack()
         bp.onOpenExplorer = self.onOpenExplorerClick
         bp.onNext = self.onNextClick
-        bp.onClose = self.onCloseClick
+        bp.onExit = self.onExitClick
+        bp.onEdit = self.onEdit
 
         return bp
 
     def onOpenExplorerClick(self):
         print("Op explorer")
         folderPath= QFileDialog.getExistingDirectory(None, ResourceNavigator.Variables.Strings.labelTextFirstRunDialog)
-        #Layout.layout.pathSelector.inputLabelSelectPath.setText(0, folderPath)
-        #here
+        print("chosen folder - {}".format(folderPath))
         if FileManager.isOsuFolder(folderPath):
             self.folderPath = folderPath
             self.nextButtonAvailable = True
             print("Found osu folder!")
-            self.nextButtonAvailable = True
 
         else:
             print("Not osu folder!")
@@ -83,5 +85,5 @@ class SelectorBackend(AppBackendAction):
         FileManager.PropertiesLoader.saveProperties(None)
         pass
 
-    def onCloseClick(self):
+    def onExitClick(self):
         pass

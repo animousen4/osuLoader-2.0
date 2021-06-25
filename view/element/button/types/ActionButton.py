@@ -25,3 +25,4 @@ class ActionButtonImport(ActionButton):
     def __init__(self):
         super(ActionButtonImport, self).__init__()
         self.setIcon(QIcon(ResourceNavigator.MaterialNavigator.icoImportFile))
+

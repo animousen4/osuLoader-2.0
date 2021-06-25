@@ -32,7 +32,7 @@ class Local:
         tempPath = "temp/"
         stylePath = "style/"
         propertiesPath = "properties/"
-        osuExeFileName = "osu.exe"
+        osuExeFileName = "osu!.exe"
 
     class Song:
         format = "osz"
@@ -52,6 +52,9 @@ class Variables:
 
         buttonImportAllText = "Import all"
         buttonDeleteAllText = "Delete all"
+
+        buttonNext = "Next"
+        buttonExit = "Exit"
 
         labelDownloads = "Downloads"
 
