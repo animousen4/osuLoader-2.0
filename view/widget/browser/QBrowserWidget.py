@@ -1,9 +1,6 @@
-from PyQt5.QtCore import QUrl, pyqtSignal
 from PyQt5.QtGui import QColor
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEngineDownloadItem
-from PyQt5.QtWidgets import QFrame
 
-import ResourceNavigator
 from view.widget.browser import QNotification
 
 

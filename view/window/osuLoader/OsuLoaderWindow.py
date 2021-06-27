@@ -3,8 +3,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget
 
 import ResourceNavigator
-from back.osuLoader.AppBackend import AppBackendInit
 from back.css.style import cssLoader
+from back.osuLoader.AppBackend import AppBackendInit
 from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 
 

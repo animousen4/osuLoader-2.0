@@ -3,10 +3,11 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-import OsuLoader2Properties
 from back.fileManager import FileManager
 from view.window.osuLoader import OsuLoaderWindow
 from view.window.osuPathSelector import OsuPathSelectorWindow
+
+
 def restart():
     #os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
     os.system("python OsuLoader2.py")

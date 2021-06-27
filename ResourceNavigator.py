@@ -49,6 +49,9 @@ class Variables:
         labelTextFirstRunDialog = "Select osu folder"
         labelInputOsuPathTip = "osu! path"
 
+        startOsuFolderText = "Select folder"
+        warnNotOsuFolderText = "Osu folder should contains osu!.exe file. Please, choose another folder"
+        findOsuFolderText = "Everything is fine"
 
         buttonImportAllText = "Import all"
         buttonDeleteAllText = "Delete all"
@@ -93,8 +96,27 @@ QLabel{
   color: @textColor;
 }
 QPushButton{
-  border: none;
+  color: @textColor;
   background-color: transparent;
+}
+IconButton{
+  border: none;
+}
+StandardButton{
+  border: 2px solid;
+  border-radius: 8;
+  padding: 5%;
+}
+StandardButton:enabled{
+  border-color: @textColor;
+  color: @textColor;
+}
+StandardButton:disabled{
+  border-color: @textDisabled;
+  color: @textDisabled;
+}
+SimpleInputLabel{
+  color: @textColor;
 }
 QVBoxLayout{
   margin-bottom: 0px;
@@ -116,8 +138,11 @@ ImportDelAllButton{
   color: @textColor;
   background-color: transparent;
   border-radius: 8;
-  border: 2px solid @textDarkColor;
+  border: 2px solid;
   background: transparent;
+}
+ImportDelAllButton:disabled{
+  border-color: @textDarkColor;
 }
 
 DownloadProgressBar{
@@ -131,11 +156,11 @@ DownloadProgressBar::chunk{
   background-color: #b8b8b8;
   width: 1px;
 }
-ImportAllButton{
+ImportAllButton:enabled{
   border: 2px solid @greenColor;
 }
 
-DeleteAllButton{
+DeleteAllButton:enabled{
   border: 2px solid @redColor;
 }
 
@@ -153,6 +178,7 @@ SmallLabel{
 @browserColor = #1f1f1f
 @textColor = #ababab
 @textDarkColor = #8f8f8f
+@textDisabled = #5e5e5e
 @greenColor = #73AD21
 @redColor = #AD2121
 """

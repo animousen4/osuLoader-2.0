@@ -1,11 +1,8 @@
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QVBoxLayout
 
-from view.element.textLabel.types.DownloadsLabel import DownloadsLabel
 from view.widget.songListDownload.microWidget.DownloadsLabelWidget import DownloadsLabelWidget
 from view.widget.songListDownload.microWidget.ImportDelAllButtonWidget import ImportDelAllButtonWidget
-from view.widget.songListDownload.microWidget.SongDownloadListWidget import SongDownloadListWidget, \
-    ActionButtonPanelWidget
+from view.widget.songListDownload.microWidget.SongDownloadListWidget import SongDownloadListWidget
 
 
 class QSongListDownloadPanel(QFrame):

@@ -1,5 +1,4 @@
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QPushButton
 
 import ResourceNavigator
 from view.element.button.ButtonTypes import IconButton, StandardButton

@@ -1,17 +1,13 @@
-import os
-import sys
-
 from PyQt5.QtWidgets import QFileDialog
 
-import OsuLoader2
 import OsuLoader2Properties
 import ResourceNavigator
 from back.fileManager import FileManager
+from back.osuSelector import AutoPathDetector
 from view.widget.pathSelector.ActionButtonWidget import ActionButtonWidget
 from view.widget.pathSelector.PathSelectorWidget import PathSelectorWidget
-from view.window.osuLoader.OsuLoaderWindow import OsuLoaderWindow
-from view.window.osuLoader.layout.OsuLoaderWindowLayout import OsuLoaderWindowLayout
 from view.window.osuPathSelector.layout.OsuPathSelectorWindowLayout import OsuPathSelectorWindowLayout
+
 
 class Layout:
     layout = OsuPathSelectorWindowLayout
@@ -61,17 +57,30 @@ class SelectorBackend(AppBackendAction):
         Layout.layout.addWidget(self.pathSelectorWidget)
         Layout.layout.addWidget(self.actionButtonWidget)
 
+        self.autoFillInputLabel()
+
         self.updateButtonNextState()
+
+    def autoFillInputLabel(self):
+        autoPath = AutoPathDetector.getOsuPath()
+        if autoPath!=None:
+            self.pathSelectorWidget.inputLabelSelectPath.setText(autoPath)
+            self.checkCorrectFolder()
 
     def checkCorrectFolder(self):
         folderPath = self.pathSelectorWidget.inputLabelSelectPath.text()
+        if folderPath == "":
+            self.pathSelectorWidget.hintLabel.setSimpleText(ResourceNavigator.Variables.Strings.startOsuFolderText)
+            return
         if FileManager.isOsuFolder(folderPath):
+            print("Found osu folder!")
+            self.pathSelectorWidget.hintLabel.setSimpleText(ResourceNavigator.Variables.Strings.findOsuFolderText)
             self.folderPath = folderPath
             self.nextButtonAvailable = True
-            print("Found osu folder!")
 
         else:
             print("Not osu folder!")
+            self.pathSelectorWidget.hintLabel.setAngryText(ResourceNavigator.Variables.Strings.warnNotOsuFolderText)
             self.folderPath = "folderPath"
             self.nextButtonAvailable = False
         self.updateButtonNextState()

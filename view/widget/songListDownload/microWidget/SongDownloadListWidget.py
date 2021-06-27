@@ -1,11 +1,10 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget, QScrollArea
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout, QWidget
 
 from back.objects.song.Song import SongShortInfo
 from view.element.button.types.ActionButton import ActionButtonImport, ActionButtonDeleteFile, \
     ActionButtonCancelDownload
 from view.element.progressBar.ProgressBarTypes import DownloadProgressBar
-from view.element.scrollArea.SimpleScrollArea import SimpleScrollArea
 from view.element.textLabel.types.MapLabel import MapSizeLabel, MapNameLabel
 
 
